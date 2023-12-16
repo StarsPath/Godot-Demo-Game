@@ -1,3 +1,40 @@
-[gd_scene format=3 uid="uid://b5db6rrx7cddl"]
+[gd_scene load_steps=6 format=3 uid="uid://b5db6rrx7cddl"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_4vn25"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5rcu"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5xfvf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0xxa"]
+size = Vector2(590, 51)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kqkmn"]
 
 [node name="Main" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_4vn25")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(569, 344)
+shape = SubResource("RectangleShape2D_i5rcu")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
+position = Vector2(4.76837e-07, -4.76837e-07)
+scale = Vector2(20, 20)
+texture = SubResource("CanvasTexture_5xfvf")
+
+[node name="wall" type="Node2D" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="wall"]
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall/RigidBody2D"]
+position = Vector2(570, 460)
+shape = SubResource("RectangleShape2D_m0xxa")
+
+[node name="Sprite2D" type="Sprite2D" parent="wall/RigidBody2D/CollisionShape2D"]
+position = Vector2(-2.03848e-05, 7.62939e-06)
+scale = Vector2(590, 50)
+texture = SubResource("CanvasTexture_kqkmn")
